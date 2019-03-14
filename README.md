@@ -29,3 +29,43 @@ Scripts run in a subprocess of the calling shell.  This means that
 if you attempt to set the env vars in the script, they will only persist
 inside that subprocess.  The `alias.sh` script sets an alias function to source the env vars into your main shell whenever you 
 run the `mfa` command.
+
+## Contents under ~/ folder
+file: mfa.cfg
+
+default="arn:aws:iam::122423:mfa/john.doe"
+mfa="arn:aws:iam::124121:mfa/john.doe"
+
+## Contents under ~/.aws folder
+file: config
+
+[default]
+output = json
+region = us-east-1
+
+[mfa]
+output = json
+region = us-east-1
+
+file: credentials
+
+[mfa]
+aws_access_key_id =
+aws_secret_access_key =
+
+[default]
+aws_access_key_id =
+aws_secret_access_key =
+aws_session_token =
+aws_security_token =
+
+## Manual Workflow
+./mfa.sh <mfacode-from-google-authenticator> <optional-aws-profile>
+
+./mfa.sh 12345 mfa
+-- the above command create temporary access key, secret access key, session token, security token.
+Copy these values into
+~/.aws/credentials file under [default] profile
+
+1. With existing access key, secret access key and passcode get the temporary access key, secret access key, session token and security token.
+2. Set the temporary access key, secret access key, session token and security token as environment variable when starting the rest service in the local.
