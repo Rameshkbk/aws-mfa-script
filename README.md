@@ -31,12 +31,14 @@ inside that subprocess.  The `alias.sh` script sets an alias function to source 
 run the `mfa` command.
 
 ## Contents under ~/ folder
+```javascript
 file: mfa.cfg
 
 default="arn:aws:iam::122423:mfa/john.doe"
 mfa="arn:aws:iam::124121:mfa/john.doe"
-
+```
 ## Contents under ~/.aws folder
+```javascript
 file: config
 
 [default]
@@ -46,7 +48,8 @@ region = us-east-1
 [mfa]
 output = json
 region = us-east-1
-
+```
+```javascript
 file: credentials
 
 [mfa]
@@ -58,7 +61,7 @@ aws_access_key_id =
 aws_secret_access_key =
 aws_session_token =
 aws_security_token =
-
+```
 ## Manual Workflow
 ./mfa.sh <mfacode-from-google-authenticator> <optional-aws-profile>
 
