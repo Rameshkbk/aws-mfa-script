@@ -30,6 +30,11 @@ if you attempt to set the env vars in the script, they will only persist
 inside that subprocess.  The `alias.sh` script sets an alias function to source the env vars into your main shell whenever you 
 run the `mfa` command.
 
+## Pre-req
+```
+brew install awscli
+```
+
 ## Contents under ~/ folder
 ```javascript
 file: mfa.cfg
@@ -65,6 +70,12 @@ aws_secret_access_key =
 aws_session_token =
 aws_security_token =
 ```
+
+- The [mfa] aws_access_key_id, aws_secret_access_key are the original creds from aws user account. This part never changes.
+- The [default] section is the temp key, secret, session token and security token recieved using the [mfa] creds. This [default] part change everytime mfa is requested using ./mfa.sh <code> mfa.
+
+- To verify that [mfa] sections is correct, run this command: aws iam get-user
+
 ## Manual Workflow
 ./mfa.sh <mfacode-from-google-authenticator> <optional-aws-profile>
 
