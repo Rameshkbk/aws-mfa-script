@@ -37,6 +37,9 @@ file: mfa.cfg
 default="arn:aws:iam::122423:mfa/john.doe"
 mfa="arn:aws:iam::124121:mfa/john.doe"
 ```
+mfa="arn:aws:iam::{aws-account-number}:mfa/john.doe"
+
+
 ## Contents under ~/.aws folder
 ```javascript
 file: config
